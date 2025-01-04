@@ -1,5 +1,6 @@
-from flask import Flask
-from user_function import user
+from flask import Flask, request
+from database import user_function
+import datetime
 app = Flask(__name__)
 
 @app.route("/user/register" , methods = ["POST"])
@@ -13,7 +14,8 @@ def register_user():
             "date_joined": datetime.now(),
             "role" : "user"
         }
-    return user().register(new_user)
+    return user_function().register(new_user)
+
 if __name__ == '__main__':
     app.run(debug =True)
     
