@@ -1,4 +1,4 @@
-import queries as query
+from database import queries as query
 all_users = query.get_all_users()
 
 def get_user_email(email):

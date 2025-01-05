@@ -1,10 +1,10 @@
 from flask import jsonify, request, Response
 from pymongo import MongoClient
-import helper as h
+from database import helper as h
 import json
 from hashlib import sha256
 from bson import json_util
-import queries
+from database import queries
 
 def register(self, user):
     if h.get_user_email(request.json.get("email")):

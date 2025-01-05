@@ -2,6 +2,7 @@ from datetime import datetime
 from hashlib import sha256
 from pymongo import MongoClient
 import database_name as dbname
+import base64
 # users data
 client = MongoClient('localhost', 27017) 
 if client[dbname.DB_NAME] is not None:
@@ -15,7 +16,7 @@ admin_data1 = {
     "username" : "Admin",
     "first_name" : "Fit",
     "last_name" :  "Checker",
-    "password" : sha256(("Adm1n!").encode('utf-8').hexdigest()),
+    "password" : sha256(("Adm1n!").encode('utf-8')).hexdigest(),
     "role": "admin",
     "date_joined": datetime(2025,1,1),
 }
@@ -25,7 +26,7 @@ user_data1 =  {
     "username" : "angus41014",
     "first_name" : "Angus",
     "last_name" :  "Chao",
-    "password" : sha256(("Angus110011@").encode('utf-8').hexdigest()),
+    "password" : sha256(("Angus110011@").encode('utf-8')).hexdigest(),
     "role": "user",
     "date_joined": datetime(2025,1,3),
 }

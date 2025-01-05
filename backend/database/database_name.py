@@ -1,1 +1,1 @@
-DB_NAME = "collectify_database"
+DB_NAME = "fitchecker_db"
