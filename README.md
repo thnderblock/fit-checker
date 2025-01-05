@@ -4,6 +4,13 @@ fit checker is an AI assisted wardrobe system that aims to customise personal st
 
 # how to set up fit-checker
 
+## frontend
+
+- npm i
+- npm run dev
+
+## backend
+
 - [python3](https://www.python.org/downloads/)
 - [mongodb](https://www.mongodb.com/docs/manual/administration/install-community/)
 - [npm node](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
