@@ -39,3 +39,8 @@ def encrypt_password(self,user,password):
         hash_object = sha256(password.encode('utf-8')).hexdigest()
         new_password = str(hash_object)
         return new_password
+
+#register clothes
+def regitster_clothes(self,clothes):
+    # checking clothes and types
+    if h.
