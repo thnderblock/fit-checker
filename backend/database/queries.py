@@ -13,3 +13,7 @@ def get_all_users(db=db) -> list:
 def insert_user(user, db=db)->list:
     all_users = db.all_users
     all_users.insert_one(user)
+# insert clothes to database
+def insert_clothes(cloth, db=db)->list:
+    all_clothes = db.all_clothes
+    all_clothes.insert_one(cloth)

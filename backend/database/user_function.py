@@ -5,6 +5,11 @@ import json
 from hashlib import sha256
 from bson import json_util
 from database import queries
+import openai
+import os
+import pandas as pd
+import time
+openai.api_key = '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'
 
 def register(self, user):
     if h.get_user_email(request.json.get("email")):
@@ -40,7 +45,18 @@ def encrypt_password(self,user,password):
         new_password = str(hash_object)
         return new_password
 
-#register clothes
+# register clothes
 def regitster_clothes(self,clothes):
     # checking clothes and types
-    if h.
+    queries.insert_clothes(clothes)
+    response_body = {"type": clothes["type"]}
+    return Response(json_util.dumps(response_body), status=200, mimetype='application/json')
+
+# asking for fit ideas
+def fit_idea(self, messages,model="gpt-3.5-turbo"):
+    response = openai.ChatCompletion.create(
+    model=model,
+    messages=messages,
+    temperature=0,
+    )
+    return Response(json_util.dumps(response.choices[0].message['content']), status=200, mimetype='application/json')

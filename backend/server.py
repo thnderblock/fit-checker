@@ -19,7 +19,6 @@ def register_user():
 # #user profile
 # @app.route("/user/<username>/profile" , methods=["PUT"])
 # def profile(username):
-    
 
 # user closet
 @app.route("/user/<username>/register_clothes" , methods=["POST"])
@@ -27,14 +26,20 @@ def register_clothes(username):
     new_clothes  = {
         "type" : str(request.json.get('email')),
         "image" :str(request.json.get('image')),
+        "description" : str(request.json.get('description')),
         # username part to get from the url
-        "username" :str(request.json.get('last_name')),
+        "username" :str(username),
         "date_joined": datetime.now()
     }
     return user_function().register_clothes(new_clothes)
 
-#choosing outfit (powered chatgpt)
-
+#chosing outfit (powered chatgpt)
+@app.route("/user/<username>/fit_idea" , methods=['POST'])
+def fit_idea(username):
+    message = {
+        "message": str(request.json.get('message'))
+    }
+    return user_function().fit_idea(message)
 if __name__ == '__main__':
     app.run(debug =True)
     

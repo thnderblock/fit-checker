@@ -40,6 +40,7 @@ clothes_data1 =  {
     "type" : "t-shirt",
     "image" : '',
     "username" : "angus41014",
+    "description" : 'white shirt',
     "date_joined": datetime(2025,1,3),
 }
 
@@ -47,6 +48,7 @@ clothes_data2 = {
     "type" : "pants",
     "image" : '',
     "username" : "angus41014",
+    "description" : 'blue jeans',
     "date_joined": datetime(2025,1,3),
 }
 
@@ -54,6 +56,7 @@ clothes_data3 =  {
     "type" : "jacket",
     "image" : '',
     "username" : "angus41014",
+    "description" : "hoodie",
     "date_joined": datetime(2025,1,3),
 }
 
