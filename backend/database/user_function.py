@@ -9,7 +9,7 @@ import openai
 import os
 import pandas as pd
 import time
-openai.api_key = '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'
+# openai.api_key = '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'
 
 def register(self, user):
     if h.get_user_email(request.json.get("email")):
