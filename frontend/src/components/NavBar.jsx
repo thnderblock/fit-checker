@@ -1,6 +1,6 @@
 const NavBar = () => {
   return (
-    <div className="sticky top-0 z-100 bg-white">
+    <div className="sticky top-0 z-[100] bg-white">
       <div className="h-12 w-full shadow-md lg:flex items-center justify-center relative">
         <a
           href="/"
