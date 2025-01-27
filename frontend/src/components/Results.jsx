@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Results = () => {
   return (
     <div className="bg-white h-[calc(90vh-3rem)] w-full flex flex-col lg:flex-row gap-6 pb-10">
@@ -15,12 +17,12 @@ const Results = () => {
             best with your clothes!
           </div>
           <div className="h-12 w-full mt-6 flex flex-row justify-center lg:justify-start">
-            <a
-              href="/"
+            <Link
+              to="/signup"
               className="h-full w-44 bg-sky-600 text-white font-body flex justify-center items-center rounded-full font-bold"
             >
               Try it out today!
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import shirt from "../images/shirt.png";
 
 const Hero = () => {
@@ -14,18 +16,18 @@ const Hero = () => {
             tailored to your style and your closet.
           </div>
           <div className="h-12 w-full mt-6 flex flex-row justify-center lg:justify-start">
-            <a
-              href="/"
+            <Link
+              to="/signup"
               className="h-full w-32 bg-sky-600 text-white font-body flex justify-center items-center rounded-full font-bold"
             >
               Sign Up
-            </a>
-            <a
-              href="/"
+            </Link>
+            <Link
+              to="/faq"
               className="h-full w-32 ml-6 border-2 border-black rounded-full flex justify-center items-center font-bold"
             >
               Learn More
-            </a>
+            </Link>
           </div>
         </div>
       </div>

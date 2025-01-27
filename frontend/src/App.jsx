@@ -1,18 +1,17 @@
 import { useEffect } from "react";
 import Lenis from "lenis";
-import NavBar from "./components/NavBar";
-import Hero from "./components/Hero";
-import Steps from "./components/Steps";
-import Results from "./components/Results";
-import CTA from "./components/CTA";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Landing from "./pages/Landing";
+import FAQ from "./pages/FAQ";
+import SignUp from "./pages/SignUp";
+import Profile from "./pages/Profile";
 
 function App() {
   //Smooth Scroll
   useEffect(() => {
-    // Initialize Lenis
     const lenis = new Lenis();
 
-    // Use requestAnimationFrame to continuously update the scroll
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -23,14 +22,14 @@ function App() {
 
   return (
     <>
-      <main>
-        <NavBar />
-        <Hero />
-        <Steps />
-        <Results />
-        <CTA />
-        <div>Footer</div>
-      </main>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
