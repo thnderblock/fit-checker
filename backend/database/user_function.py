@@ -9,6 +9,7 @@ import openai
 import os
 import pandas as pd
 import time
+import datetime
 # openai.api_key = "something"
 
 def register(self, user):
@@ -41,9 +42,16 @@ def password_requirement(self,password):
     return upper & digit
     
 def encrypt_password(self,user,password):
-        hash_object = sha256(password.encode('utf-8')).hexdigest()
-        new_password = str(hash_object)
-        return new_password
+    hash_object = sha256(password.encode('utf-8')).hexdigest()
+    new_password = str(hash_object)
+    return new_password
+
+def login(self, email, password):
+    user =  h.get_user_email(email)
+    if not user or user["password"] != sha256(password.encode('utf-8')).hexdigest():
+        return Response("Error: Incorrect email or password", status=400, mimetype='application/json')
+    response_body = {"username": user["username"]}
+    return Response(json.dumps(response_body), status=200, mimetype='application/json')
 
 # register clothes
 def regitster_clothes(self,clothes):
@@ -53,10 +61,22 @@ def regitster_clothes(self,clothes):
     return Response(json_util.dumps(response_body), status=200, mimetype='application/json')
 
 # asking for fit ideas
-def fit_idea(self, messages,model="gpt-3.5-turbo"):
+def fit_ask(self, messages,username,model="gpt-3.5-turbo",):
     response = openai.ChatCompletion.create(
     model=model,
     messages=messages,
     temperature=0,
     )
-    return Response(json_util.dumps(response.choices[0].message['content']), status=200, mimetype='application/json')
+    user = h.get_user_username(username)
+    message = {
+        "username": user["username"],
+        "message": str(response.choices[0].message['content']),
+        "date": datetime.now()
+    }
+    response_body = message
+    queries.insert_message(message)
+    return Response(json_util.dumps(message), status=200, mimetype='application/json')
+
+def fit_idea(self):
+    
+    return 

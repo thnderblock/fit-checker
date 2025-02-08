@@ -11,6 +11,7 @@ fitchecker_db = client[dbname.DB_NAME]
 
 all_users = fitchecker_db.all_users
 all_clothes = fitchecker_db.all_clothes
+all_messages = fitchecker_db.all_messages
 
 admin_data1 = {
     "email" : "admin@gmail.com",
@@ -61,4 +62,19 @@ clothes_data3 =  {
 }
 
 all_clothes.insert_many([clothes_data1, clothes_data2,clothes_data3])
+
+
+message_data1 = {
+    "username" : "angus41014",
+    "message" : "testing message function",
+    "date" : datetime(2025,1,3),
+}
+message_data2 = {
+    "username" : "angus41014",
+    "message" : "testing again",
+    "date" : datetime(2025,1,4),
+}
+
+all_messages.insert_many([message_data1, message_data2])
+
 print("setup successful!")

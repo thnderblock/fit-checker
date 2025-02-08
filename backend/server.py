@@ -19,6 +19,10 @@ def register_user():
 # #user profile
 # @app.route("/user/<username>/profile" , methods=["PUT"])
 # def profile(username):
+# 3 fits they chose
+# all clothes uploaded
+# general rec, casual or business
+# chat gpt
 
 # user closet
 @app.route("/user/<username>/register_clothes" , methods=["POST"])
@@ -33,13 +37,26 @@ def register_clothes(username):
     }
     return user_function().register_clothes(new_clothes)
 
+@app.route("/user/login", methods=["POST"])
+def login():
+    email =  request.json.get('email')
+    password = request.json.get('password')
+    return user_function.login(email, password)
+
 #chosing outfit (powered chatgpt)
-@app.route("/user/<username>/fit_idea" , methods=['POST'])
-def fit_idea(username):
+@app.route("/user/<username>/fit_ask" , methods=['POST'])
+def fit_ask(username):
     message = {
         "message": str(request.json.get('message'))
     }
-    return user_function().fit_idea(message)
+    return user_function().fit_ask(message,username)
+
+
+@app.route("/user/<username>/fit_idea" , method=['POST'])
+def fit_idea(username):
+    return user_function.fit_idea()
+
+
 if __name__ == '__main__':
     app.run(debug =True)
     
