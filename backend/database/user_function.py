@@ -10,7 +10,7 @@ import os
 import pandas as pd
 import time
 import datetime
-api_key = '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'
+api_key = ""
 
 def register(self, user):
     if h.get_user_email(request.json.get("email")):
