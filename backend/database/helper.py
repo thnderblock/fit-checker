@@ -17,6 +17,15 @@ def get_user_username(username):
             return user
     return None
 
+#get clothes data based on username
+def get_clothes_username(username):
+    user_clothes = []
+    for clothes in all_clothes:
+        if clothes["username"] == username:
+            user_clothes.append(clothes)
+    return user_clothes
+            
+
 # getting clothes data
 def get_clothes_types(type):
     for user in all_users:

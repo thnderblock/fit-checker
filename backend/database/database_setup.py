@@ -34,7 +34,18 @@ user_data1 =  {
     "role": "user",
     "date_joined": datetime(2025,1,3),
 }
-all_users.insert_many([admin_data1, user_data1])
+user_data2=  {
+    "email" : "thnderblock@gmail.com",
+    "username" : "thnderblock",
+    "first_name" : "Nick",
+    "last_name" :  "Tong",
+    "password" : sha256(("Thnderblock1!").encode('utf-8')).hexdigest(),
+    "profile_picture" : '',
+    "role": "user",
+    "date_joined": datetime(2025,2,18),
+}
+
+all_users.insert_many([admin_data1, user_data1,user_data2])
 
 #clothes data
 clothes_data1 =  {
