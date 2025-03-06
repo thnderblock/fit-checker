@@ -60,6 +60,14 @@ def fit_ask(username):
     message = {
         "message": str(request.json.get('message'))
     }
+    user_token = request.headers.get('Authorization')
+    user = h.get_user_username(user_token)
+    if user == None:
+        response_body = {"status_message": "invalid token"}
+        return Response(json.dumps(response_body), status=400, mimetype='application/json')
+    user_clothes = h.get_clothes_username(user)
+    user_message  = " here are all the user's clothes," + str(user_clothes)
+    message += user_message
 
     return user_function().fit_ask(message,username)
 
