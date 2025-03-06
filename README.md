@@ -15,4 +15,6 @@ fit checker is an AI assisted wardrobe system that aims to customise personal st
 - [mongodb](https://www.mongodb.com/docs/manual/administration/install-community/)
 - [npm node](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
+ pip install -r requirements.txt
+
 Developed by Nick Tong and Angus Chao
