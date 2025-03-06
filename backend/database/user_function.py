@@ -79,7 +79,6 @@ def fit_ask(mess,username,):
         
     )
     user = h.get_user_username(username)
-    print("this is")
     print(response)
     message = {
         "username": user["username"],
@@ -87,6 +86,7 @@ def fit_ask(mess,username,):
         "date": datetime.now()
     }
     response_body = message
+    queries.insert_message(mess)
     queries.insert_message(message)
     return Response(json_util.dumps(response_body), status=200, mimetype='application/json')
 
