@@ -116,6 +116,9 @@ def fit_ask(mess,username):
         response_style[key] = value
         
     response_body = response_style
+    # path = "test.txt"
+    # with open(path, "w") as file:
+    #     file.write(str(response_body))
     queries.insert_message(mess)
     queries.insert_message(new_message)
     print("response style", response_style)
