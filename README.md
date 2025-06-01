@@ -11,8 +11,8 @@ Fit Checker is an AI assisted wardrobe system that aims to customise personal st
 
 ## Database
 Install [mongoDB Community edition](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/) 
-- Run: mongoDB service 
-- Run: python3 database/db_setup.py
+1. Run: mongoDB service
+2. Run: python3 database/db_setup.py
 
 ## frontend
 1. npm i
