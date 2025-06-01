@@ -22,7 +22,7 @@ def get_clothes_username(username):
     user_clothes = []
     for clothes in all_clothes:
         if clothes["username"] == username:
-            user_clothes.append(clothes)
+            user_clothes.append(clothes["description"])
     return user_clothes
             
 
@@ -47,3 +47,10 @@ def convert_image_to_base64(image_path):
         ext = image_path.split('.')[-1]
         image_data = f'data:image/{ext};base64,{base64_utf8_str}'
         return image_data
+    
+# get clothes image based on description
+def get_img_des(descrip):
+    for cloth in all_clothes:
+        if cloth['description'] == descrip:
+            return cloth['image']
+    return None

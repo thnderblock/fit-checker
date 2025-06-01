@@ -9,8 +9,10 @@ from openai import OpenAI
 import os
 import pandas as pd
 import time
-import datetime
-api_key = ""
+from datetime import datetime
+import jwt
+import re
+api_key = os.getenv("OPENAI_API_KEY")
 
 def register(self, user):
     if h.get_user_email(request.json.get("email")):
@@ -27,10 +29,21 @@ def register(self, user):
     user['password'] = self.encrypt_password(user,password)
     return self.create_account(user)
 
-def create_account(user):
+def create_account(self,user):
     queries.insert_user(user)
-    response_body = {"username": user["username"]}
+    token = self.encode_user(user)
+    response_body = {"token":token, "username": user["username"]}
     return Response(json_util.dumps(response_body), status=200, mimetype='application/json')
+
+def encode_user(self,user):
+    """
+    encode user payload as a jwt
+    :param user:
+    :return:
+    """
+    encoded_data = jwt.encode({"username": user["username"]}, os.environ['FIT_CHECKER'], algorithm="HS256")
+
+    return encoded_data
 
 # password helper
 def password_requirement(self,password):
@@ -61,7 +74,8 @@ def regitster_clothes(self,clothes):
     return Response(json_util.dumps(response_body), status=200, mimetype='application/json')
 
 # asking for fit ideas
-def fit_ask(mess,username,):
+# asking for fit ideas
+def fit_ask(mess,username):
     client = OpenAI(
         api_key=api_key
     )
@@ -72,21 +86,56 @@ def fit_ask(mess,username,):
         messages= [ 
             {
                 "role" : "user",
-                "content" : mess,
+                "content" : str(mess),
             }
             
         ],
         
     )
     user = h.get_user_username(username)
+    user_clothes = h.get_clothes_username(user)
     print(response)
     message = {
         "username": user["username"],
-        "message": str(response.choices[0].message),
+        "message": str(response.choices[0].message.content),
         "date": datetime.now()
     }
-    response_body = message
+    # return descrition of each clothes
+    dictionary_clothes = parse_styles(message["message"])
+    new_message = {
+        "username": user["username"],
+        "message":dictionary_clothes,
+        "date": datetime.now()
+    }
+    response_style = {}
+    for style in dictionary_clothes:
+        key = style['style'] 
+        value = []
+        for i in style['clothes']:
+            value.append(h.get_img_des(i))                   
+        response_style[key] = value
+        
+    response_body = response_style
     queries.insert_message(mess)
-    queries.insert_message(message)
+    queries.insert_message(new_message)
+    print("response style", response_style)
     return Response(json_util.dumps(response_body), status=200, mimetype='application/json')
+
+def parse_styles(text):
+    
+    styles = []
+
+    # Find all matches using regex
+    pattern = r"\d+\.\s\*\*(.*?)\*\*\s+\[(.*?)\]"
+    matches = re.findall(pattern, text)
+
+    for style_name, items_str in matches:
+        # Split items inside brackets into a list
+        items = [item.strip() for item in items_str.split(",")]
+        styles.append({
+            "style": style_name,
+            "clothes": items
+        })
+
+    return styles
 

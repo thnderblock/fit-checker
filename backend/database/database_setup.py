@@ -3,6 +3,7 @@ from hashlib import sha256
 from pymongo import MongoClient
 import database_name as dbname
 import base64
+import helper as h
 # users data
 client = MongoClient('localhost', 27017) 
 if client[dbname.DB_NAME] is not None:
@@ -34,6 +35,7 @@ user_data1 =  {
     "role": "user",
     "date_joined": datetime(2025,1,3),
 }
+
 user_data2=  {
     "email" : "thnderblock@gmail.com",
     "username" : "thnderblock",
@@ -50,29 +52,61 @@ all_users.insert_many([admin_data1, user_data1,user_data2])
 #clothes data
 clothes_data1 =  {
     "type" : "t-shirt",
-    "image" : '',
+    "image" : h.convert_image_to_base64('./images/IMG_2101.jpg'),
     "username" : "angus41014",
-    "description" : 'white shirt',
+    "description" : 'white graphic shirt',
     "date_joined": datetime(2025,1,3),
 }
 
 clothes_data2 = {
     "type" : "pants",
-    "image" : '',
+    "image" : h.convert_image_to_base64('./images/IMG_2102.jpg'),
     "username" : "angus41014",
-    "description" : 'blue jeans',
+    "description" : 'black jeans',
     "date_joined": datetime(2025,1,3),
 }
 
 clothes_data3 =  {
     "type" : "jacket",
-    "image" : '',
+    "image" : h.convert_image_to_base64('./images/IMG_2107.jpg'),
     "username" : "angus41014",
     "description" : "hoodie",
     "date_joined": datetime(2025,1,3),
 }
 
-all_clothes.insert_many([clothes_data1, clothes_data2,clothes_data3])
+clothes_data4 =  {
+    "type" : "t-shirt",
+    "image" : h.convert_image_to_base64('./images/IMG_2105.jpg'),
+    "username" : "angus41014",
+    "description" : 'black shirt',
+    "date_joined": datetime(2025,1,3),
+} 
+
+clothes_data5 =  {
+    "type" : "pants",
+    "image" : h.convert_image_to_base64('./images/IMG_2103.jpg'),
+    "username" : "angus41014",
+    "description" : 'blue baggy jeans',
+    "date_joined": datetime(2025,1,3),
+} 
+
+clothes_data6 =  {
+    "type" : "pants",
+    "image" : h.convert_image_to_base64('./images/IMG_2104.jpg'),
+    "username" : "angus41014",
+    "description" : 'white pants',
+    "date_joined": datetime(2025,1,3),
+} 
+
+clothes_data7 =  {
+    "type" : "shirt",
+    "image" : h.convert_image_to_base64('./images/IMG_2099.jpg'),
+    "username" : "angus41014",
+    "description" : 'white business shirt',
+    "date_joined": datetime(2025,1,3),
+} 
+
+all_clothes.insert_many([clothes_data1, clothes_data2,clothes_data3, clothes_data4, clothes_data5, clothes_data6, clothes_data7])
 
 
 message_data1 = {
