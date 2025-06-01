@@ -15,10 +15,13 @@ Install [mongoDB Community edition](https://www.mongodb.com/docs/manual/tutorial
 - Run: python3 database/db_setup.py
 
 ## frontend
-- npm i
-- npm run dev
-- npm run build
+1. npm i
+2. npm run build
+3. npm run dev
 
 ## backend
-pip install -r requirements.txt
+1. cd backend
+2. pip install -r requirements.txt
+3. cd back to fit-checker and run python3 server/server.py
+
 Developed by Nick Tong and Angus Chao
