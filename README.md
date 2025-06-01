@@ -11,14 +11,20 @@ Fit Checker is an AI assisted wardrobe system that aims to customise personal st
 
 ## Database
 Install [mongoDB Community edition](https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-windows/) 
-- Run: mongoDB service 
-- Run: python3 database/db_setup.py
+1. Run: mongoDB service
+2. Run: python3 database/database_setup.py
 
 ## frontend
-- npm i
-- npm run dev
-- npm run build
+1. npm i
+2. npm run build
+3. npm run dev
+React frontend should now be running at http://localhost:3000
 
 ## backend
-pip install -r requirements.txt
+1. cd backend
+2. pip install -r requirements.txt
+3. cd back to fit-checker and run python3 server.py
+4. alternatively venv can be set up for this project by running python3 -m venv .venv
+Flask backend should now be running at http://localhost:5000
+
 Developed by Nick Tong and Angus Chao
