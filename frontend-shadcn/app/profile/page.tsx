@@ -17,7 +17,7 @@ import Markdown from "react-markdown";
 export default function ProfilePage() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
-  const [images, setImages] = useState();
+  // const [images, setImages] = useState();
 
   const handleSubmit = async (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
@@ -25,6 +25,7 @@ export default function ProfilePage() {
       event.stopPropagation();
       const content = event.currentTarget.value;
       setInput(content);
+      console.log(input);
 
       const response = await fetch(
         "http://localhost:5000/user/angus41014/fit_ask",
@@ -39,8 +40,14 @@ export default function ProfilePage() {
       );
 
       const data = await response.json();
-      console.log(data);
-      setOutput(data["message"]);
+      console.log("data", data);
+      let res = "";
+      for (const i in data) {
+        res += i;
+        res += data[i].toString();
+        res += "\n";
+      }
+      setOutput(res);
     }
   };
 
