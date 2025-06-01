@@ -18,10 +18,13 @@ Install [mongoDB Community edition](https://www.mongodb.com/docs/manual/tutorial
 1. npm i
 2. npm run build
 3. npm run dev
+React frontend should now be running at http://localhost:3000
 
 ## backend
 1. cd backend
 2. pip install -r requirements.txt
 3. cd back to fit-checker and run python3 server.py
 4. alternatively venv can be set up for this project by running python3 -m venv .venv
+Flask backend should now be running at http://localhost:5000
+
 Developed by Nick Tong and Angus Chao
