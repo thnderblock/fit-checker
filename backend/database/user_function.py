@@ -112,7 +112,7 @@ def fit_ask(mess,username):
         key = style['style'] 
         value = []
         for i in style['clothes']:
-            value.append(h.get_img_des(i))                   
+            value.append(h.get_img_des(i.lower()))                   
         response_style[key] = value
         
     response_body = response_style
@@ -137,5 +137,6 @@ def parse_styles(text):
             "clothes": items
         })
 
+    print("styles", styles)
     return styles
 
