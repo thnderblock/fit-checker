@@ -1,6 +1,7 @@
 from database import queries as query
 import base64
 from PIL import Image
+import io
 
 all_users = query.get_all_users()
 all_clothes = query.get_all_clothes()
@@ -41,15 +42,18 @@ def get_recommendation(username):
     return None
 
 def convert_image_to_base64(image_path):
-    with open(image_path, 'rb') as image_file:
-        # From https://stackoverflow.com/a/6375973
-        img = image_file.read()
-        new_size = (img.width // 4, img.height // 4)
-        binary_fc = img.resize(new_size, Image.ANTIALIAS)
-        base64_utf8_str = base64.b64encode(binary_fc).decode('utf-8')
-        ext = image_path.split('.')[-1]
-        image_data = f'data:image/{ext};base64,{base64_utf8_str}'
-        return image_data
+    img = Image.open(image_path)
+    new_size = (img.width // 4, img.height // 4)
+    img = img.resize(new_size, Image.LANCZOS)
+    # Save to bytes buffer
+    buffer = io.BytesIO()
+    img.save(buffer, format="JPEG")  # or 'PNG'
+    buffer.seek(0)
+    # Convert to base64
+    base64_utf8_str = base64.b64encode(buffer.read()).decode('utf-8')
+    ext = image_path.split('.')[-1]
+    image_data = f'data:image/{ext};base64,{base64_utf8_str}'
+    return image_data 
     
 # get clothes image based on description
 def get_img_des(descrip):
