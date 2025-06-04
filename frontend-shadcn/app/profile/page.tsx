@@ -12,12 +12,22 @@ import {
 import { Separator } from "@radix-ui/react-separator";
 import { Toggle } from "@/components/ui/toggle";
 import { useState } from "react";
-import Markdown from "react-markdown";
+// import Markdown from "react-markdown";
+
+// to add
+// pin fits
+// add clothes
+// render warerobes
+
+type ImageMap = {
+  [key: string]: string[]; // name -> array of base64 images
+};
 
 export default function ProfilePage() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
-  // const [images, setImages] = useState();
+  // const [images, setImages] = useState("");
+  const [imageGroups, setImageGroups] = useState<ImageMap>({});
 
   const handleSubmit = async (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
@@ -39,15 +49,16 @@ export default function ProfilePage() {
         }
       );
 
-      const data = await response.json();
+      const data: ImageMap = await response.json();
       console.log("data", data);
-      let res = "";
-      for (const i in data) {
-        res += i;
-        res += data[i].toString();
-        res += "\n";
-      }
-      setOutput(res);
+      // const res = "";
+      // for (const i in data) {
+      //   const formattedImages = data[i].map((img: string) => `${img}`);
+      //   console.log(formattedImages);
+      //   setImages(formattedImages);
+      // }
+      // setOutput(res);
+      setImageGroups(data);
     }
   };
 
@@ -65,8 +76,22 @@ export default function ProfilePage() {
           onKeyDown={handleSubmit}
           className="rounded-full bg-white h-12 border"
         ></Input>
-        <div className="">
-          <Markdown>{output}</Markdown>
+        <div className="flex flex-col w-50vw justify-center gap-4">
+          {Object.entries(imageGroups).map(([style, images]) => (
+            <div key={style}>
+              <h2 className="text-xl font-bold mb-4">{style}</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                {images.map((imgSrc, idx) => (
+                  <img
+                    key={idx}
+                    src={imgSrc}
+                    alt={`${style} ${idx}`}
+                    className="w-full h-auto rounded-lg shadow-md"
+                  />
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
         <div className="flex flex-col gap-2 w-full justify-center items-center">
           <Separator />

@@ -25,8 +25,7 @@ def get_clothes_username(username):
     for clothes in all_clothes:
         if clothes["username"] == username:
             user_clothes.append(clothes["description"])
-    return user_clothes
-            
+    return user_clothes      
 
 # getting clothes data
 def get_clothes_types(type):
@@ -34,6 +33,7 @@ def get_clothes_types(type):
         if user["type"] == type:
             return user
     return None
+
 #get chatgpt recommendations
 def get_recommendation(username):
     for message in all_messages:
