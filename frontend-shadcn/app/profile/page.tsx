@@ -86,7 +86,7 @@ export default function ProfilePage() {
                     key={idx}
                     src={imgSrc}
                     alt={`${style} ${idx}`}
-                    className="w-full h-auto rounded-lg shadow-md"
+                    className="w-full h-auto rounded-lg   -md"
                   />
                 ))}
               </div>
