@@ -73,10 +73,17 @@ def fit_ask(username):
     user_message  = "you are a expert fashion AI that will recommend users stylish clothes, only use the clothes that are given to you, here are all the user's clothes" + str(user_clothes) + 'for each style that you have, present your output as [StyleName][Clothes1,Clothes2...]'
     message["message"] += user_message
 
-    print("USER", user)
-    print("USER CLOTHES", user_clothes)
     return user_function.fit_ask(message,username)
 
+@app.route("/user/<username>/get_all_clothes" , methods=['POST'])
+def get_all_clothes(username):
+    user_token = request.headers.get('Authorization')
+    user = h.get_user_username(user_token)
+    if user == None:
+        response_body = {"status_message": "invalid token"}
+        return Response(json.dumps(response_body), status=400, mimetype='application/json')
+    user_clothes = h.get_clothes_username_full(user["username"])
+    return user_clothes
 
 if __name__ == '__main__':
     app.run(debug =True)

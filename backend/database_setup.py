@@ -74,14 +74,6 @@ clothes_data3 =  {
     "date_joined": datetime(2025,1,3),
 }
 
-clothes_data4 =  {
-    "type" : "t-shirt",
-    "image" : h.convert_image_to_base64('./images/IMG_2105.jpg'),
-    "username" : "angus41014",
-    "description" : 'black shirt',
-    "date_joined": datetime(2025,1,3),
-} 
-
 clothes_data5 =  {
     "type" : "pants",
     "image" : h.convert_image_to_base64('./images/IMG_2103.jpg'),
@@ -106,7 +98,7 @@ clothes_data7 =  {
     "date_joined": datetime(2025,1,3),
 } 
 
-all_clothes.insert_many([clothes_data1, clothes_data2,clothes_data3, clothes_data4, clothes_data5, clothes_data6, clothes_data7])
+all_clothes.insert_many([clothes_data1, clothes_data2,clothes_data3, clothes_data5, clothes_data6, clothes_data7])
 
 
 message_data1 = {

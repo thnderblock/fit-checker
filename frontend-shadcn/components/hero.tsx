@@ -1,5 +1,8 @@
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
+import Link from "next/link";
+import { IoLogIn } from "react-icons/io5";
+import { FaArrowRight } from "react-icons/fa";
 
 export default function Hero() {
   return (
@@ -18,9 +21,14 @@ export default function Hero() {
           fits instantly.
         </div>
         <div className="z-10 flex gap-2 justify-center items-center">
-          <Button className="rounded-full p-5 shadow-xl">O Login</Button>
+          <Link href={"/login"}>
+            <Button className="rounded-full p-5 shadow-xl cursor-pointer">
+              <IoLogIn />
+              Login
+            </Button>
+          </Link>
           <Button className="rounded-full p-5 shadow-xl" variant={"outline"}>
-            Learn More {">>"}
+            Learn More <FaArrowRight />
           </Button>
         </div>
       </div>{" "}

@@ -27,6 +27,13 @@ def get_clothes_username(username):
             user_clothes.append(clothes["description"])
     return user_clothes      
 
+def get_clothes_username_full(username):
+    user_clothes = []
+    for clothes in all_clothes:
+        if clothes["username"] == username:
+            user_clothes.append([clothes["type"], clothes["description"], clothes["image"]])
+    return user_clothes    
+
 # getting clothes data
 def get_clothes_types(type):
     for user in all_users:
