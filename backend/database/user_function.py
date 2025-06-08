@@ -67,10 +67,10 @@ def login(self, email, password):
     return Response(json.dumps(response_body), status=200, mimetype='application/json')
 
 # register clothes
-def regitster_clothes(self,clothes):
+def register_clothes(clothes):
     # checking clothes and types
     queries.insert_clothes(clothes)
-    response_body = {"type": clothes["type"]}
+    response_body = {"type": clothes["type"], "description": clothes["description"], "image": clothes["image"]}
     return Response(json_util.dumps(response_body), status=200, mimetype='application/json')
 
 # asking for fit ideas
@@ -94,7 +94,7 @@ def fit_ask(mess,username):
     )
     user = h.get_user_username(username)
     user_clothes = h.get_clothes_username(user)
-    print(response)
+    # print(response)
     message = {
         "username": user["username"],
         "message": str(response.choices[0].message.content),
@@ -121,7 +121,7 @@ def fit_ask(mess,username):
     #     file.write(str(response_body))
     queries.insert_message(mess)
     queries.insert_message(new_message)
-    print("response style", response_style)
+    # print("response style", response_style)
     return Response(json_util.dumps(response_body), status=200, mimetype='application/json')
 
 def parse_styles(text):
@@ -140,6 +140,6 @@ def parse_styles(text):
             "clothes": items
         })
 
-    print("styles", styles)
+    # print("styles", styles)
     return styles
 

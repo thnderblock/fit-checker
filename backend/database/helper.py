@@ -6,6 +6,7 @@ import io
 all_users = query.get_all_users()
 all_clothes = query.get_all_clothes()
 all_messages = query.get_all_messages()
+
 def get_user_email(email):
     # all_users = query.get_all_users()
     for user in all_users:
@@ -22,14 +23,16 @@ def get_user_username(username):
 #get clothes data based on username
 def get_clothes_username(username):
     user_clothes = []
-    for clothes in all_clothes:
+    all_clothes_curr = query.get_all_clothes()
+    for clothes in all_clothes_curr:
         if clothes["username"] == username:
             user_clothes.append(clothes["description"])
     return user_clothes      
 
 def get_clothes_username_full(username):
     user_clothes = []
-    for clothes in all_clothes:
+    all_clothes_curr = query.get_all_clothes()
+    for clothes in all_clothes_curr:
         if clothes["username"] == username:
             user_clothes.append([clothes["type"], clothes["description"], clothes["image"]])
     return user_clothes    

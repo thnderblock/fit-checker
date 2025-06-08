@@ -1,6 +1,6 @@
 from flask import Flask, request, Response
 from database import user_function
-import datetime
+from datetime import datetime 
 from database import helper as h
 import json
 
@@ -49,7 +49,9 @@ def register_clothes(username):
         "username" :str(username),
         "date_joined": datetime.now()
     }
-    return user_function().register_clothes(new_clothes)
+
+    print(str(request.json.get('image')))
+    return user_function.register_clothes(new_clothes)
 
 @app.route("/user/login", methods=["POST"])
 def login():
@@ -70,7 +72,8 @@ def fit_ask(username):
         response_body = {"status_message": "invalid token"}
         return Response(json.dumps(response_body), status=400, mimetype='application/json')
     user_clothes = h.get_clothes_username(user["username"])
-    user_message  = "you are a expert fashion AI that will recommend users stylish clothes, only use the clothes that are given to you, here are all the user's clothes" + str(user_clothes) + 'for each style that you have, present your output as [StyleName][Clothes1,Clothes2...]'
+    user_message  = "you are a expert fashion AI that will recommend users stylish clothes, only use the clothes that are given to you, here are all the user's clothes" 
+    user_message = user_message + str(user_clothes) + 'for each style that you have, present your output as [StyleName][Clothes1,Clothes2...]'
     message["message"] += user_message
 
     return user_function.fit_ask(message,username)
