@@ -33,7 +33,7 @@ export default function ProfilePage() {
   const [loading, setLoading] = useState(false);
   const [showClothes, setShowClothes] = useState(false);
   const [imageGroups, setImageGroups] = useState<ImageMap>({});
-  const [clothes, setClothes] = useState<string[]>([]);
+  const [clothes, setClothes] = useState<string[][]>([]);
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -108,7 +108,11 @@ export default function ProfilePage() {
 
     const data = await response.json();
     console.log("data", data);
-    getClothes();
+    setClothes((prev) => [
+      ...prev,
+      [data["type"], data["description"], data["image"]],
+    ]);
+    // getClothes();
   };
 
   function imageFileToBase64(file: File): Promise<string> {
