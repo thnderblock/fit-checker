@@ -9,9 +9,11 @@ export default function Navbar() {
   return (
     <div className="z-20 px-4 py-2 bg-transparent bg-opacity-85 backdrop-blur-3xl flex w-3/4 rounded-full shadow-xl justify-between fixed top-2">
       <div className="flex items-center font-semibold">
-        <Button className="rounded-full">
-          <IoShirt /> fit-checker
-        </Button>
+        <Link href={"/"}>
+          <Button className="rounded-full">
+            <IoShirt /> fit-checker
+          </Button>
+        </Link>
       </div>
       <div className="gap-2 flex items-center">
         <Link href={"/"}>
