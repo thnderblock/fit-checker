@@ -1,4 +1,5 @@
 # Fit-Checker
+<img width="2559" height="1439" alt="image" src="https://github.com/user-attachments/assets/8a19937f-be9b-4a06-a3eb-bc4354e8fd59" />
 
 Fit Checker is an AI assisted wardrobe system that aims to customise personal styles based on the user's personal wardrobe. Users take images of the clothes they personally own and upload to the website, after which, fit-checker would help assist on picking clothes based on the styles the user have suggested.
 
